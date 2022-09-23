@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>addEleveDialog</class>
+ <widget class="QWidget" name="addEleveDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>641</width>
+    <height>373</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Ubuntu</family>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Ajout Eleve </string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="font">
+      <font>
+       <family>Ubuntu</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0">
+      <item row="1" column="0">
+       <layout class="QFormLayout" name="formLayout_3">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>Date de naissance:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="dateNaissEdit">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="5" column="2">
+       <layout class="QFormLayout" name="formLayout_12">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>Debut Ecolage</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="combodebutEcolage">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="3" column="2">
+       <layout class="QFormLayout" name="formLayout_7">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>Contact:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="contactBEdit">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="6" column="0">
+       <layout class="QFormLayout" name="formLayout_13">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_13">
+          <property name="text">
+           <string>Tarif</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboTarif">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="2">
+       <layout class="QFormLayout" name="formLayout_6">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>Contact:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="contactAEdit">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="3" column="0">
+       <layout class="QFormLayout" name="formLayout_4">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>Mère:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="mereEdit">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="4" column="2">
+       <layout class="QFormLayout" name="formLayout_10">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>N° :</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="numeroEdit">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="4" column="0">
+       <layout class="QFormLayout" name="formLayout_8">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>Adresse:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="adressEdit">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="5" column="0">
+       <layout class="QFormLayout" name="formLayout_9">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>Classe:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboclasseEdit">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="2">
+       <layout class="QFormLayout" name="formLayout_2">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>Prénom :</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="prenomEdit">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="0">
+       <layout class="QFormLayout" name="formLayout">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>Nom:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="nomEdit">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="readOnly">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="0">
+       <layout class="QFormLayout" name="formLayout_5">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>Père:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="pereEdit">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="6" column="2">
+       <layout class="QFormLayout" name="formLayout_14">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>Date Inscription</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDateEdit" name="insDateEdit">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="calendarPopup">
+           <bool>true</bool>
+          </property>
+          <property name="date">
+           <date>
+            <year>2017</year>
+            <month>11</month>
+            <day>30</day>
+           </date>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="2">
+       <layout class="QFormLayout" name="formLayout_11">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Lieu de Naissance</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lieuNaissanceEdit">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="7" column="0">
+       <layout class="QFormLayout" name="formLayout_16">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_15">
+          <property name="text">
+           <string>Insc/Reins</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboInsReins">
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <item>
+           <property name="text">
+            <string>Inscription</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Rinscription</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="7" column="2">
+       <widget class="QSplitter" name="splitter_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <widget class="QCheckBox" name="checkBoxParain">
+         <property name="font">
+          <font>
+           <family>Ubuntu</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Parrainné</string>
+         </property>
+        </widget>
+        <widget class="QWidget" name="layoutWidget_2">
+         <layout class="QFormLayout" name="formLayout_17">
+          <property name="leftMargin">
+           <number>29</number>
+          </property>
+          <property name="topMargin">
+           <number>3</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_17">
+            <property name="text">
+             <string>Genre:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboGenre">
+            <property name="font">
+             <font>
+              <family>Ubuntu</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>520</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="annulerButton">
+       <property name="text">
+        <string>Annuler</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="addElvButton">
+       <property name="text">
+        <string>Ajouter  </string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>nomEdit</tabstop>
+  <tabstop>prenomEdit</tabstop>
+  <tabstop>dateNaissEdit</tabstop>
+  <tabstop>lieuNaissanceEdit</tabstop>
+  <tabstop>pereEdit</tabstop>
+  <tabstop>contactAEdit</tabstop>
+  <tabstop>mereEdit</tabstop>
+  <tabstop>contactBEdit</tabstop>
+  <tabstop>adressEdit</tabstop>
+  <tabstop>numeroEdit</tabstop>
+  <tabstop>comboclasseEdit</tabstop>
+  <tabstop>combodebutEcolage</tabstop>
+  <tabstop>comboTarif</tabstop>
+  <tabstop>insDateEdit</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>annulerButton</sender>
+   <signal>clicked()</signal>
+   <receiver>addEleveDialog</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>565</x>
+     <y>344</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>320</x>
+     <y>186</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
