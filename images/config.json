@@ -1,0 +1,28 @@
+
+{
+  "nom_ecole": "pomme d'api",
+  "nom_directeur" : "Razanadranoro noeline gabrielle",
+  "contact" : "0327820436",
+  "mois_ecolage" : 
+  ["septembre",
+  "octobre",
+  "novembre",
+  "decembre",
+  "janvier",
+  "fevrier",
+  "mars",
+  "avril",
+  "mai",
+  "juin",
+  "juillet"
+  ],
+  
+  "nombre_classe": 4,
+  "nom_classe":
+  ["tps",
+  "ps",
+  "ms",
+  "gs"
+    ]
+  
+}

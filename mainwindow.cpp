@@ -260,6 +260,14 @@ void MainWindow::on_addEleveButton_clicked()
 
 }
 
+void MainWindow::on_deleteEleveButton_clicked(QModelIndex &idx)
+{
+
+   bool ret = ui->nomsDesEleves->model()->removeRow(idx.row() - 1);
+   //bool ret = filterEleveModel->removeRow(idx.row(),idx.parent());
+   qDebug() << "retour delte : "<< ret  <<  "idx :" << idx.row() << idx.parent().isValid();
+}
+
 void MainWindow::setDbInfoText()
 {
     QSqlQuery query("SELECT * FROM INFO");
@@ -330,6 +338,7 @@ void MainWindow::elvContextMenu(QPoint posit)
     QAction* action_editElement = menuForItem.addAction("Modifier Elève");
 
     QAction* selectedAction;
+    menuForItem.addSeparator();
 
     QAction* deleteAction = menuForItem.addAction("Supprimer Elève");
 
@@ -339,6 +348,7 @@ void MainWindow::elvContextMenu(QPoint posit)
            if(selectedAction) {
                if(selectedAction == action_addElement) {
                    qDebug() << "AJouter Elève";
+                   emit on_addEleveButton_clicked();
                }
            }
        }
@@ -347,9 +357,11 @@ void MainWindow::elvContextMenu(QPoint posit)
            if(selectedAction) {
                if(selectedAction == action_editElement) {
                    qDebug() << "Modifier Elève";
+                   emit on_editEleveButton_clicked();
                }
                if(selectedAction == deleteAction) {
                    qDebug() << "Supprimer Elève";
+                   on_deleteEleveButton_clicked(idx);
                }
            }
        }

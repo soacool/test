@@ -66,6 +66,8 @@ private:
     MyEleveModel *m_myeleveModel;
     void setelvDetailsMap();    
     int currentElvId;
+    void on_deleteEleveButton_clicked(QModelIndex& idx);
+
 
 };
 

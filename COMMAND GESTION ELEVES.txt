@@ -1,0 +1,221 @@
+
+Eleve:
+INSERT INTO ELEVES(NAME,PRENAME,CLASSID)VALUES('','',0);
+UPDATE ELEVES SET NAME = '', PRENAME = '',CLASSID = 0 WHERE ID = this->id
+DELETE
+FROM ELEVES WHERE ID = this->id
+ 
+
+
+
+INSERT INTO ELEVEINFO(DATE_NAISSANCE,LIEU_NAISSANCE,ADRESSE,MERE,PERE,CONTACT_A,CONTACT_B,DEBUT_ECOLAGE_ID,TARIF_ID,PROF_ID,ELEVE_ID,NUMERO,DATE_INSCRIPTION)
+VALUES('2012-12-21','','','','','','',0,0,0,0,0,'2012-12-21');
+
+UPDATE ELEVEINFO SET DATE_NAISSANCE = '2012-12-21',LIEU_NAISSANCE = '',ADRESSE = '',MERE = '',PERE = '',CONTACT_A = '',CONTACT_B = '',DEBUT_ECOLAGE_ID = 0,TARIF_ID = 0,PROF_ID = 0,ELEVE_ID = 0,NUMERO = 0,DATE_INSCRIPTION = '2012-12-21'
+WHERE ELEVE_ID = 0
+
+
+PROFS:
+
+insert into PROFS (NOM, PRENOM, CONTACT, CLASSE_ID) values ('MOANARIZIKY','Prisca',03240000000, (select ID from CLASSES where CODE = 'TPS'));
+
+update PROFS NOM = 'NOM', PRENOM = 'PRENOM', CONTACT = 'CONTACT', CLASSE_ID = 'CLASSE_ID'  where ID = this.ID;
+
+delete PROFS where ID = this.ID;
+
+
+TARIFS:
+
+INSERT INTO  TARIFS (NAME,MONTANT) VALUES ('NAME',0.00);
+
+INSERTUPDATE TARIFS SET NAME = 'NAME', MONTANT = 0.00 WHERE ID = this.ID;
+
+DELETE TARIFS where ID = this.ID;
+
+
+
+PAYMENTS:
+
+SELECT * FROM PAYMENTS WHERE ELEVE_ID = this.ID;
+
+INSERT INTO PAYMENTS (DATEOFPAYMENT,MONTANT,MONTH_ID,TYPE_TARIF,ELEVE_ID) VALUES('2012-12-21',MONTANT,MOIS,TYPE_TARIFS,this.ID);
+
+UPDATE PAYMENTS SET DATEOFPAYMENT  = '2012-12-21', MONTANT = 'MONTANT', MONTH_ID = 'MOIS', TYPE_TARIF = 'TARIF_TYPE' WHERE ID = this.ID AND ELEVE_ID = EleveID;
+
+
+
+CLASSES:
+
+INSERT INTO CLASSES(CODE,NAME) VALUES ('Code','Name');
+
+UPDATE CLASSES SET CODE = 'Code', NAME = 'Name' WHERE ID = this.ClasseID;
+
+DELETE FROM CLASSES WHERE ID = this.ClasseId;
+
+SELECT ID,NAME FROM CLASSES;
+
+
+SELECT eleves.NAME as name, 
+eleves.PRENAME as prename,
+eleveinfo.DATE_NAISSANCE as date_naissance,
+eleveinfo.ADRESSE as adresse,
+eleveinfo.MERE as mere,
+eleveinfo.PERE as pere FROM eleves inner join eleveinfo on eleves.ID = eleveinfo.ELEVE_ID where eleves.ID = 3
+
+
+select eleve_id as id,dateofpayment as 'Date de payment',(select name from nature where nature.ID = payments.NATURE) as Nature,firstpay as '1er Versement', secondpay as '2eme Versement', (firstpay + secondpay) as Total,((select montant from tarifs where tarifs.ID = paytype) - (firstpay + secondpay)) as 'Reste à payer' from payments 
+
+
+
+
+
+
+/// sample new eleve
+INSERT INTO payments(nature,dateofpayment,firstpay,secondpay,paytype,eleve_id) VALUES(13, 0,0,0,5,4);
+INSERT INTO payments(nature,dateofpayment,firstpay,secondpay,paytype,eleve_id) VALUES(15, 0,0,0,4,4);
+INSERT INTO payments (nature,dateofpayment,firstpay,secondpay,paytype,eleve_id)VALUES(9, 0,0,0,1,4);
+INSERT INTO payments(nature,dateofpayment,firstpay,secondpay,paytype,eleve_id) VALUES(10, 0,0,0,1,4);
+INSERT INTO payments(nature,dateofpayment,firstpay,secondpay,paytype,eleve_id) VALUES(11, 0,0,0,1,4);
+INSERT INTO payments (nature,dateofpayment,firstpay,secondpay,paytype,eleve_id)VALUES(12, 0,0,0,1,4);
+INSERT INTO payments(nature,dateofpayment,firstpay,secondpay,paytype,eleve_id) VALUES(1, 0,0,0,1,4);
+INSERT INTO payments (nature,dateofpayment,firstpay,secondpay,paytype,eleve_id)VALUES(2, 0,0,0,1,4);
+INSERT INTO payments (nature,dateofpayment,firstpay,secondpay,paytype,eleve_id)VALUES(3, 0,0,0,1,4);
+INSERT INTO payments (nature,dateofpayment,firstpay,secondpay,paytype,eleve_id)VALUES(4, 0,0,0,1,4);
+INSERT INTO payments (nature,dateofpayment,firstpay,secondpay,paytype,eleve_id)VALUES(5, 0,0,0,1,4);
+INSERT INTO payments (nature,dateofpayment,firstpay,secondpay,paytype,eleve_id)VALUES(6, 0,0,0,1,4);
+INSERT INTO payments (nature,dateofpayment,firstpay,secondpay,paytype,eleve_id)VALUES(7, 0,0,0,1,4);
+INSERT INTO payments(nature,dateofpayment,firstpay,secondpay,paytype,eleve_id) VALUES(16, 0,0,0,7,4);
+INSERT INTO payments (nature,dateofpayment,firstpay,secondpay,paytype,eleve_id)VALUES(17, 0,0,0,8,4);
+INSERT INTO payments (nature,dateofpayment,firstpay,secondpay,paytype,eleve_id)VALUES(18, 0,0,0,8,4);
+
+
+
+
+
+//sample copy insert with filter
+INSERT INTO PAYMENTMODEL(nature,dateofpayment,firstpay,secondpay,paytype,eleve_id) SELECT nature,dateofpayment,firstpay,secondpay,paytype,eleve_id
+  FROM payments
+  WHERE eleve_id = 1;
+
+  
+  
+  
+  
+///sample add eleve payment table  
+UPDATE paymentmodel set eleve_id = this->eleve->id();//last->row()->id
+INSERT INTO PAYMENTS(nature,dateofpayment,firstpay,secondpay,paytype,eleve_id) 
+SELECT nature,dateofpayment,firstpay,secondpay,paytype,eleve_id FROM paymentmodel;
+
+
+
+
+
+
+select firstpay, (select case 
+when paytype = 1  then ((select montant from tarifs where tarifs.ID = paytype) - (firstpay + secondpay)) 
+end
+where nature = strftime('%m')) frek from payments
+
+
+
+select eleve_id as id,dateofpayment as 'Date de payment',(select name from nature where nature.ID = payments.NATURE) as Nature,firstpay as '1er Versement', secondpay as '2eme Versement', (firstpay + secondpay) as Total,((select montant from tarifs where tarifs.ID = paytype) - (firstpay + secondpay)) as 'Reste à payer' from payments where eleve_id = 3
+
+
+select firstpay, CASE
+          WHEN   (nature >= 9)             
+               OR (select CAST(strftime('%m') as Integer) < 8)  THEN 1
+          WHEN    (nature )
+               OR (EXTRACT(MONTH FROM CMD_DATE) = 5)
+               OR (EXTRACT(MONTH FROM CMD_DATE) = 6)  THEN 2
+          WHEN    (EXTRACT(MONTH FROM CMD_DATE) = 7)
+               OR (EXTRACT(MONTH FROM CMD_DATE) = 8)
+               OR (EXTRACT(MONTH FROM CMD_DATE) = 9)  THEN 3
+          WHEN    (EXTRACT(MONTH FROM CMD_DATE) = 10)
+               OR (EXTRACT(MONTH FROM CMD_DATE) = 11)
+               OR (EXTRACT(MONTH FROM CMD_DATE) = 12) THEN 4
+       END AS TRIMESTRE,
+else  0                       
+
+end as TOTAL
+
+from payments where paytype = 1 and eleve_id = 3
+
+
+
+si type = ecolage et mois dans(9-10-11-12)  et mois < debut_ecolage donc = 0
+
+si debut_ecolage dans(9-10-11-12) et mois <  debut_ecolage donc = 0;
+or debut_ecolage pas dans(9-10-11-12) 
+si debut_ecolage dans(1,2,3,4,5,6,7) et mois <  debut_ecolage donc = 0 ou 
+
+
+
+("UPDATE payments set paytype= CASE "
+                      "when nature in(9,10,11,12) and (nature < (select debut_ecolage_id from eleveinfo where eleve_id =:id) "
+                      "OR (select debut_ecolage_id from eleveinfo where eleve_id =:id) not in (9,10,11,12)) then 8 "
+                      "when nature in(1,2,3,4,5,6,7) and (nature < (select debut_ecolage_id from eleveinfo where eleve_id =:id) OR "
+                        "(select debut_ecolage_id from eleveinfo where eleve_id =:id) not in (1,2,3,4,5,6,7)) then 8
+                      "else paytype end "
+                       "where eleve_id =:id and paytype = 1");
+
+
+
+
+
+///select filter reste a payer  v1
+select elvesforlistview.[noms] as noms, elevepayments.[Nature] as Nature,
+elevepayments.[Reste à payer] as 'Reste à payer'from elvesforlistview inner join elevepayments ON elevepayments.[id] = elvesforlistview.[id]
+where elevepayments.[Reste à payer] > 0 and elvesforlistview.[CLASSID] = 1
+
+
+
+
+///select filter reste a payer V2
+select elvinfo.id, elvinfo.noms, elvinfo.classid ,
+SUM(CASE WHEN  elvpay.nature = 'Septembre' THEN elvpay.[reste à payer] END) AS 'Septembre',
+SUM(CASE WHEN  elvpay.nature = 'Octobre' THEN elvpay.[reste à payer] END) AS 'Octobre',
+SUM(CASE WHEN  elvpay.nature = 'Novembre' THEN elvpay.[reste à payer] END) AS 'Novembre',
+SUM(CASE WHEN  elvpay.nature = 'Decembre' THEN elvpay.[reste à payer] END) AS 'Decembre',
+SUM(CASE WHEN  elvpay.nature = 'Janvier' THEN elvpay.[reste à payer] END) AS 'Janvier',
+SUM(CASE WHEN  elvpay.nature = 'Fevrier' THEN elvpay.[reste à payer] END) AS 'Fevrier',
+SUM(CASE WHEN  elvpay.nature = 'Mars' THEN elvpay.[reste à payer] END) AS 'Mars',
+SUM(CASE WHEN  elvpay.nature = 'Avril' THEN elvpay.[reste à payer] END) AS 'Avril',
+SUM(CASE WHEN  elvpay.nature = 'Mai' THEN elvpay.[reste à payer] END) AS 'Mai',
+SUM(CASE WHEN  elvpay.nature = 'Juin' THEN elvpay.[reste à payer] END) AS 'Juin'
+
+from elvesforlistview elvinfo
+
+join elevepayments elvpay on elvinfo.id = elvpay.id
+
+where elvpay.[reste à payer] > 0 and elvinfo.classid = 3
+
+group by elvinfo.id, elvinfo.noms
+
+
+///V3 valid
+select elvinfo.id, elvinfo.noms, elvinfo.classid as classes,
+SUM(CASE WHEN  elvpay.nature = 'Septembre' THEN elvpay.[reste à payer] END) AS 'Septembre',
+SUM(CASE WHEN  elvpay.nature = 'Octobre' THEN elvpay.[reste à payer] END) AS 'Octobre',
+SUM(CASE WHEN  elvpay.nature = 'Novembre' THEN elvpay.[reste à payer] END) AS 'Novembre',
+SUM(CASE WHEN  elvpay.nature = 'Decembre' THEN elvpay.[reste à payer] END) AS 'Decembre',
+SUM(CASE WHEN  elvpay.nature = 'Janvier' THEN elvpay.[reste à payer] END) AS 'Janvier',
+SUM(CASE WHEN  elvpay.nature = 'Fevrier' THEN elvpay.[reste à payer] END) AS 'Fevrier',
+SUM(CASE WHEN  elvpay.nature = 'Mars' THEN elvpay.[reste à payer] END) AS 'Mars',
+SUM(CASE WHEN  elvpay.nature = 'Avril' THEN elvpay.[reste à payer] END) AS 'Avril',
+SUM(CASE WHEN  elvpay.nature = 'Mai' THEN elvpay.[reste à payer] END) AS 'Mai',
+SUM(CASE WHEN  elvpay.nature = 'Juin' THEN elvpay.[reste à payer] END) AS 'Juin'
+
+from elvesforlistview elvinfo
+
+join elevepayments elvpay on elvinfo.id = elvpay.id
+
+group by elvinfo.id, elvinfo.noms
+
+having Decembre > 0 and classes = 1
+
+
+
+
+
+
+
