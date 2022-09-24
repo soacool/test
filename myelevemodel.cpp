@@ -38,8 +38,6 @@ Qt::ItemFlags MyEleveModel::flags(const QModelIndex &index) const
     return Qt::ItemIsSelectable | Qt::ItemIsEnabled;
 }
 
-//void MyEleveModel::refreshData()
-//{
 
-//}
+
 

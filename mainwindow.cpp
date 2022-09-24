@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     filterEleveModel = new NameCalssesFilterModel;
     m_myeleveModel = new MyEleveModel;
+    //m_myeleveModel->setEditStrategy(QSqlTableModel::OnRowChange);
     filterEleveModel->setSourceModel(m_myeleveModel);
     //filterEleveModel->setFilterKeyColumn(1);
     //filterEleveModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -98,7 +99,7 @@ void MainWindow::fillTreeView()
     ui->treeView->expand(model->index(0,0));
     ui->treeView->setUniformRowHeights(true);
     //to Fix
-  //  ui->treeView->setContentsMargins(QMargins(6,10,6,10));
+    //  ui->treeView->setContentsMargins(QMargins(6,10,6,10));
     connect(ui->treeView,SIGNAL(clicked(QModelIndex)),this,SLOT(treeviewIndexChanged(QModelIndex)));
     connect(ui->treeView->selectionModel(), &QItemSelectionModel::selectionChanged,
             this, &MainWindow::updateActions);
@@ -107,7 +108,7 @@ void MainWindow::fillTreeView()
     connect(ui->cmdAddSection,&QToolButton::clicked, this, &MainWindow::insertChild);
     connect(ui->cmdDelete,&QToolButton::clicked, this, &MainWindow::removeRow);
     connect(ui->treeView->selectionModel(), &QItemSelectionModel::selectionChanged,
-                 this, &MainWindow::updateActions);
+            this, &MainWindow::updateActions);
 
     updateActions();
 }
@@ -261,11 +262,9 @@ void MainWindow::on_addEleveButton_clicked()
 }
 
 void MainWindow::on_deleteEleveButton_clicked(QModelIndex &idx)
-{
-
-   bool ret = ui->nomsDesEleves->model()->removeRow(idx.row() - 1);
-   //bool ret = filterEleveModel->removeRow(idx.row(),idx.parent());
-   qDebug() << "retour delte : "<< ret  <<  "idx :" << idx.row() << idx.parent().isValid();
+{   
+    m_myeleveModel->removeRows(filterEleveModel->mapToSource(idx).row(), 1, filterEleveModel->mapToSource(idx).parent());
+    refreshAllModel();
 }
 
 void MainWindow::setDbInfoText()
@@ -315,11 +314,11 @@ void MainWindow::on_pushButton_clicked()
 {
     QDir dbDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
     QString fileName = QFileDialog::getOpenFileName(this,
-     tr("Open Database"), dbDir.absolutePath(), tr("Database Files (*.db *.sql *.txt)"));
+                                                    tr("Open Database"), dbDir.absolutePath(), tr("Database Files (*.db *.sql *.txt)"));
     if(!fileName.isEmpty()){
         bool dbStatus = mDatabase->setCurrentDB(fileName);
-         qDebug() << "Database connection: " << fileName << "  status "<< dbStatus;
-       }
+        qDebug() << "Database connection: " << fileName << "  status "<< dbStatus;
+    }
     setDbInfoText();
     refreshAllModel();
 }
@@ -343,28 +342,28 @@ void MainWindow::elvContextMenu(QPoint posit)
     QAction* deleteAction = menuForItem.addAction("Supprimer Elève");
 
 
-       if(!idx.isValid()) {
-           selectedAction = menuBeyondItem.exec(globalpos);
-           if(selectedAction) {
-               if(selectedAction == action_addElement) {
-                   qDebug() << "AJouter Elève";
-                   emit on_addEleveButton_clicked();
-               }
-           }
-       }
-       else {
-           selectedAction = menuForItem.exec(globalpos);
-           if(selectedAction) {
-               if(selectedAction == action_editElement) {
-                   qDebug() << "Modifier Elève";
-                   emit on_editEleveButton_clicked();
-               }
-               if(selectedAction == deleteAction) {
-                   qDebug() << "Supprimer Elève";
-                   on_deleteEleveButton_clicked(idx);
-               }
-           }
-       }
+    if(!idx.isValid()) {
+        selectedAction = menuBeyondItem.exec(globalpos);
+        if(selectedAction) {
+            if(selectedAction == action_addElement) {
+                //qDebug() << "AJouter Elève";
+                emit on_addEleveButton_clicked();
+            }
+        }
+    }
+    else {
+        selectedAction = menuForItem.exec(globalpos);
+        if(selectedAction) {
+            if(selectedAction == action_editElement) {
+                //qDebug() << "Modifier Elève";
+                emit on_editEleveButton_clicked();
+            }
+            if(selectedAction == deleteAction) {
+                //qDebug() << "Supprimer Elève";
+                on_deleteEleveButton_clicked(idx);
+            }
+        }
+    }
 }
 
 
